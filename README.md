@@ -1,9 +1,7 @@
-# LinuxProjects
+# Class Projects
 
 included:
 files (.sh, .py, .sql, .conf)
-
-### Class Projects
 
 Automated startup scripts for AWS:
 * Django
