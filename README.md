@@ -6,8 +6,8 @@ included:
 ### Class Projects
 
 Automated startup scripts for AWS:
-       * Django
-       * Welcome page Apache
+       - Django
+       - Welcome page Apache
 
 Automated startup scripts for Gcloud:
       * ldap
