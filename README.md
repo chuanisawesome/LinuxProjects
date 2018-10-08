@@ -1,7 +1,7 @@
 # LinuxProjects
 
 included:
-      files (.sh, .py, .sql, .conf)
+files (.sh, .py, .sql, .conf)
 
 ### Class Projects
 
