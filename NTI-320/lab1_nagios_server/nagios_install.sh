@@ -26,10 +26,10 @@ chmod 666 /var/log/nagios/nagios.log
 
 cd /etc/nagios/
 
-#cd /etc/nagios/ vim generate_config.sh
-#chmod +x generate_config.sh
+cd /etc/nagios/ vim generate_config.sh
+chmod +x generate_config.sh
 
-#./generate_config.sh web-a 10.138.0.4
+./generate_config.sh web-a 10.138.0.4
 
 mkdir servers
 
