@@ -24,6 +24,16 @@ chmod 666 /var/log/nagios/nagios.log
 /usr/sbin/nagios -v /etc/nagios/nagios.cfg
 
 
+cd /etc/nagios/
+
+#cd /etc/nagios/ vim generate_config.sh
+#chmod +x generate_config.sh
+
+#./generate_config.sh web-a 10.138.0.4
+
+mkdir servers
+
+
 echo '########### NRPE CONFIG LINE #######################
 define command{
 command_name check_nrpe
