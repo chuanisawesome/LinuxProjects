@@ -7,6 +7,6 @@ systemctl enable nrpe
 systemctl start nrpe
 
 
-sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, 'internal-ip'/g' /etc/nagios/nrpe.cfg
+sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, 10.138.0.3/g' /etc/nagios/nrpe.cfg
 
 systemctl restart nrpe
