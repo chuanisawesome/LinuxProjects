@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# configuration for nagios-a
+#####################
+#   On the server   #
+#####################
+
 #####INSTALL NAGIOS#####
 yum -y install nagios
 systemctl enable nagios
@@ -30,7 +35,7 @@ htpasswd -c /etc/nagios/passwd nagiosadmin
 #####ENABLE ACCESS FOR LOGS#####
 chmod 666 /var/log/nagios/nagios.log 
 
-#####RESTARTING NAGIOS#####
+#####VERIFY NAGIOS CONFIG#####
 /usr/sbin/nagios -v /etc/nagios/nagios.cfg
 
 #####CHANGE DIRECTORY#####
@@ -44,12 +49,15 @@ cd /etc/nagios/
 #####MAKE DIRECTORY#####
 mkdir servers
 
+#vim nagios.cfg
+#uncomment line 51 cfg_dir=/etc/nagios/servers
+
 ######Need to put the NRPE changes into config file#####
 echo '########### NRPE CONFIG LINE #######################
 define command{
 command_name check_nrpe
 command_line $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
-}' >> /etc/nagios/servers/commands.cfg
+}' >> /etc/nagios/objects/commands.cfg
 
 #####RESTART NAGIOS#####
 systemctl restart nagios
