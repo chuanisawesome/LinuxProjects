@@ -41,13 +41,13 @@ chmod 666 /var/log/nagios/nagios.log
 #####CHANGE DIRECTORY#####
 cd /etc/nagios/
 
+#####MAKE DIRECTORY#####
+mkdir servers
+
 #vim generate_config.sh
 #chmod +x generate_config.sh
 
 #./generate_config.sh web-a 10.138.0.4
-
-#####MAKE DIRECTORY#####
-mkdir servers
 
 #vim nagios.cfg
 #uncomment line 51 cfg_dir=/etc/nagios/servers
