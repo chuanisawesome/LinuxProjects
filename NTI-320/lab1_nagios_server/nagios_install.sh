@@ -48,12 +48,12 @@ cd /etc/nagios/
 mkdir servers
 
 #vim generate_config.sh
-#chmod +x generate_config.sh
+chmod +x generate_config.sh
 
-#./generate_config.sh web-a 10.138.0.4
+./generate_config.sh web-a 10.138.0.4
 
-#vim nagios.cfg
 #uncomment line 51 cfg_dir=/etc/nagios/servers
+sed -i '51 s/^#//' nagios.cfg 
 
 ######Need to put the NRPE changes into config file#####
 echo '########### NRPE CONFIG LINE #######################
