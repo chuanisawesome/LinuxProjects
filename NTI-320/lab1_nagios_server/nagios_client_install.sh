@@ -9,6 +9,8 @@ systemctl start nrpe
 
 nagios_server="nagios-a"
 
-sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, $nagios_server/g' /etc/nagios/nrpe.cfg
+nagios_ip=$(gcloud compute instances list | grep $nagios_server | awk '{ print $4 }' | tail -1)
+
+sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, $nagios_ip/g' /etc/nagios/nrpe.cfg
 
 systemctl restart nrpe
