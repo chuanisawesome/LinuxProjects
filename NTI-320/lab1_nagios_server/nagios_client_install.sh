@@ -1,6 +1,11 @@
 #!/bin/bash
 # make sure that instance is on Allow full access to all Cloud APIs
 
+# configuration for web-a
+######################
+#   On the client   #
+######################
+
 yum -y install nagios-nrpe-server nagios-plugins
 
 yum -y install nrpe
