@@ -4,6 +4,7 @@
 
 yum update -y
 yum install -y rsyslog
+yum install -y net-tools
 
 systemctl start rsyslog
 systemctl enable rsyslog
