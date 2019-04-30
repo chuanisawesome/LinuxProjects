@@ -117,7 +117,7 @@ gcloud compute instances create $django_server \
     --scopes cloud-platform \
     --image-family centos-7 \
     --image-project centos-cloud \
-    --tags "http-server","https-server" \
+    --tags "http-server","https-server","port-8000" \
     --metadata-from-file startup-script="/LinuxProjects/NTI-310/new_instance/django-startup-script.sh"
 
     
