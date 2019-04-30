@@ -127,8 +127,10 @@ systemctl start rsyslog
 
 #on the rsyslog client
 #add to end of file
+#internal ip
 echo "*.* @@rsyslog-a:514" >> /etc/rsyslog.conf
 
 systemctl restart rsyslog
 
+##check to see if rsyslog is active
 systemctl status rsyslog
