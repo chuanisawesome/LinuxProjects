@@ -72,5 +72,21 @@ sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /var/lib/pgs
 systemctl restart postgresql.service
 systemctl reload httpd
 
+###setting up machine to run as rsyslog client to server rsyslog
+yum update -y && yum install -y rsyslog
+
+systemctl enable rsyslog
+systemctl start rsyslog
+
+#on the rsyslog client
+#add to end of file
+#internal ip
+echo "*.* @@rsyslog-a:514" >> /etc/rsyslog.conf
+
+systemctl restart rsyslog
+
+##check to see if rsyslog is active
+systemctl status rsyslog
+
 #enforcing to permissive
 setenforce 0
