@@ -117,3 +117,15 @@ setenforce 0
 ldapadd -x -W -D "cn=ldapadm,dc=nti310,dc=local" -f base.ldif -y /root/ldap_admin_pass
 
 systemctl restart httpd
+
+###setting up machine to run as rsyslog client to server rsyslog
+
+yum update -y && yum install -y rsyslog
+
+systemctl start rsyslog
+
+#on the rsyslog client
+#add to end of file
+echo "*.* @@nti310-final-logserver:514" >> /etc/rsyslog.conf
+systemctl enable rsyslog
+
