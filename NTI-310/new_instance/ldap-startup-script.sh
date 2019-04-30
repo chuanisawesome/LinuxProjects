@@ -128,3 +128,7 @@ systemctl start rsyslog
 #on the rsyslog client
 #add to end of file
 echo "*.* @@rsyslog-a:514" >> /etc/rsyslog.conf
+
+systemctl restart rsyslog
+
+systemctl status rsyslog
