@@ -6,7 +6,7 @@ yum install git -y
 git clone https://github.com/chuanisawesome/LinuxProjects.git
 
 #---------------spin up Rsyslog Server instance------------------#
-rsyslog_server="testinrsyslog"
+rsyslog_server="testingrsyslog"
 
 gcloud compute instances create $rsyslog_server \
     --zone us-west1-b \
