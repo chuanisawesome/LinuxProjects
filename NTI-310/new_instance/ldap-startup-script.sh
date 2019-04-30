@@ -126,6 +126,6 @@ systemctl start rsyslog
 
 #on the rsyslog client
 #add to end of file
-echo "*.* @@nti310-final-logserver:514" >> /etc/rsyslog.conf
+echo "*.* @@rsyslog-a:514" >> /etc/rsyslog.conf
 systemctl enable rsyslog
 
