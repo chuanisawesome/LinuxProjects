@@ -20,6 +20,19 @@ gcloud compute instances create $rsyslog_server \
 rsyslog_ip=$(gcloud compute instances list | grep $rsyslog_server | awk '{ print $4 }' | tail -1)
 echo "This is your internal rsyslog_ip $rsyslog_ip" >> instances_ip.txt
 
+ldapserver=/LinuxPojects/NTI-310/new_instance/ldap-startup-script.sh
+sed -i "s/\$rsys_ip/$rsyslog_ip/g" $ldapserver
+
+nfsserver=/LinuxPojects/NTI-310/new_instance/nfs-startup-script.sh
+sed -i "s/\$rsys_ip/$rsyslog_ip/g" $nfsserver
+
+postgresserver=/LinuxPojects/NTI-310/new_instance/postgres-startup-script.sh
+sed -i "s/\$rsys_ip/$rsyslog_ip/g" $postgresserver
+
+djangoserver=/LinuxPojects/NTI-310/new_instance/django-startup-script.sh
+sed -i "s/\$rsys_ip/$rsyslog_ip/g" $djangoserver
+
+sleep 5
 
 #---------------spin up LDAP Server instance---------------------#
 ldap_server="testingldap"
@@ -37,8 +50,6 @@ gcloud compute instances create $ldap_server \
 ldap_ip=$(gcloud compute instances list | grep $ldap_server | awk '{ print $4 }' | tail -1)
 echo "This is your internal ldap_ip $ldap_ip" >> instances_ip.txt
 
-sleep 30s
-
 #---------------spin up NFS Server instance---------------------#
 nfs_server="testingnfs"
 
@@ -55,7 +66,7 @@ nfs_ip=$(gcloud compute instances list | grep $nfs_server | awk '{ print $4 }' |
 echo "This is your internal nfs_ip $nfs_ip" >> instances_ip.txt
 
 ##sed line that changes ip in the client file
-lnclient=/NTI-310/new_instance/ldap-nfs-client-startup-script.sh
+lnclient=/LinuxPojects/NTI-310/new_instance/ldap-nfs-client-startup-script.sh
 sed -i "s/\$nfs_ip/$nfs_ip/g" $lnclient
 sed -i "s/\$ldap_ip/$ldap_ip/g" $lnclient
 
@@ -91,7 +102,7 @@ gcloud compute instances create $postgres_server \
 post_ip=$(gcloud compute instances list | grep $postgres_server | awk '{ print $4 }' | tail -1)
 echo "This is your internal postgres_ip $post_ip" >> instances_ip.txt
 
-django=/NTI-310/new_instance/django-startup-script.sh
+django=/LinuxPojects/NTI-310/new_instance/django-startup-script.sh
 # to get postgres internal ip
 sed -i "s/\$server_name/$postgres_server/g" $django
 
@@ -114,7 +125,7 @@ django_ip=$(gcloud compute instances list | grep $django_server | awk '{ print $
 echo "This is your internal django_ip $django_ip" >> instances_ip.txt
 
 
-dir=/NTI-310/new_instance/ip.sh
+dir=/LinuxPojects/NTI-310/new_instance/ip.sh
 if [ -f $dir ]
 then 
    sed -i "s/\$ldap_server/$ldap_server/g" $dir
