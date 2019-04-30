@@ -3,7 +3,23 @@
 # make sure that the running instance has the startup script that is being used (local file)
 #---------------------git clone repo-----------------------------#
 yum install git -y
-git clone https://github.com/chuanisawesome/NTI-310.git
+git clone https://github.com/chuanisawesome/LinuxProjects.git
+
+#---------------spin up Rsyslog Server instance------------------#
+rsyslog_server="testinrsyslog"
+
+gcloud compute instances create $rsyslog_server \
+    --zone us-west1-b \
+    --machine-type f1-micro \
+    --scopes cloud-platform \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --metadata-from-file startup-script="/LinuxPojects/NTI-310/new_instance/rsyslog-startup-script.sh"
+
+
+rsyslog_ip=$(gcloud compute instances list | grep $rsyslog_server | awk '{ print $4 }' | tail -1)
+echo "This is your internal rsyslog_ip $rsyslog_ip" >> instances_ip.txt
+
 
 #---------------spin up LDAP Server instance---------------------#
 ldap_server="testingldap"
@@ -21,6 +37,7 @@ gcloud compute instances create $ldap_server \
 ldap_ip=$(gcloud compute instances list | grep $ldap_server | awk '{ print $4 }' | tail -1)
 echo "This is your internal ldap_ip $ldap_ip" >> instances_ip.txt
 
+sleep 30s
 
 #---------------spin up NFS Server instance---------------------#
 nfs_server="testingnfs"
